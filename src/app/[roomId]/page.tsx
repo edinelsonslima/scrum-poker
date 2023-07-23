@@ -3,13 +3,13 @@ import { ContainerTable } from '@/components/ContainerTable';
 import { IRoom } from '@/types';
 
 interface IPageParams {
-  params: { id: string };
+  params: { roomId: string };
 }
 
-export default async function ScrumPoker({ params }: IPageParams) {
-  const response = await fetch(`http://localhost:3000/api/room`, {
-    body: JSON.stringify({ roomId: params.id }),
-  });
+export default async function ScrumPoker({ params: { roomId } }: IPageParams) {
+  const response = await fetch(
+    `http://localhost:3000/api/routes/room/${roomId}`
+  );
 
   const room: IRoom = await response.json();
 
